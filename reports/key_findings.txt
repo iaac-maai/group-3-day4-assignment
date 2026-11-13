@@ -1,0 +1,6 @@
+MLP test MAE: 38,006 INR/month; RMSE: 82,590; R2: 0.622.
+Day 2 Random Forest MAE: 38,045; MLP MAE change: +0.1% improvement (negative means worse).
+Median baseline MAE: 67,124; MLP reduction: 43.4%.
+Validation selected dropout 0.0 and 28 refit epochs; test was not used for these choices.
+752/3770 test listings match training features+target; non-overlap MLP MAE: 41,615 INR/month.
+Saved weights and complete preprocessing reproduce scenario predictions in a fresh object.

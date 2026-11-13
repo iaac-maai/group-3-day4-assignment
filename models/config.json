@@ -1,0 +1,52 @@
+{
+  "dropout": 0.0,
+  "epochs": 28,
+  "input_dim": 23,
+  "hidden": [
+    64,
+    32
+  ],
+  "learning_rate": 0.001,
+  "batch_size": 256,
+  "target_scale": 100000.0,
+  "seed": 42,
+  "tuning_seconds": 3.85957640002016,
+  "selection_metric": "validation MAE",
+  "refit_seconds": 2.415860200067982,
+  "parameters": 3649,
+  "features": [
+    "Area_num",
+    "BHK_num",
+    "Bathrooms_num",
+    "Balconies_num",
+    "Furnished_clean",
+    "Facing",
+    "Location",
+    "Property Type"
+  ],
+  "encoded_features": [
+    "num__Area_num",
+    "num__BHK_num",
+    "num__Bathrooms_num",
+    "num__Balconies_num",
+    "cat__Furnished_clean_Furnished",
+    "cat__Furnished_clean_Semi-Furnished",
+    "cat__Furnished_clean_Unfurnished",
+    "cat__Facing_East",
+    "cat__Facing_North",
+    "cat__Facing_North - East",
+    "cat__Facing_North - West",
+    "cat__Facing_South",
+    "cat__Facing_South - East",
+    "cat__Facing_South -West",
+    "cat__Facing_Unknown",
+    "cat__Facing_West",
+    "cat__Location_Mumbai",
+    "cat__Property Type_Apartment",
+    "cat__Property Type_Builder Floor Apartment",
+    "cat__Property Type_Penthouse",
+    "cat__Property Type_Residential House",
+    "cat__Property Type_Service Apartment",
+    "cat__Property Type_Villa"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "versions": {
+    "python": "3.14.7",
+    "torch": "2.15.0+cpu",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "data_sha256": "354d28e07432137cdc97a2197a556269137e74135af01186420e2e2917a19ee9",
+  "rows": 18846,
+  "fit": 12060,
+  "validation": 3016,
+  "train_final": 15076,
+  "test": 3770,
+  "test_overlap_rows": 752,
+  "config": {
+    "dropout": 0.0,
+    "epochs": 28,
+    "input_dim": 23,
+    "hidden": [
+      64,
+      32
+    ],
+    "learning_rate": 0.001,
+    "batch_size": 256,
+    "target_scale": 100000.0,
+    "seed": 42,
+    "tuning_seconds": 3.85957640002016,
+    "selection_metric": "validation MAE",
+    "refit_seconds": 2.415860200067982,
+    "parameters": 3649,
+    "features": [
+      "Area_num",
+      "BHK_num",
+      "Bathrooms_num",
+      "Balconies_num",
+      "Furnished_clean",
+      "Facing",
+      "Location",
+      "Property Type"
+    ],
+    "encoded_features": [
+      "num__Area_num",
+      "num__BHK_num",
+      "num__Bathrooms_num",
+      "num__Balconies_num",
+      "cat__Furnished_clean_Furnished",
+      "cat__Furnished_clean_Semi-Furnished",
+      "cat__Furnished_clean_Unfurnished",
+      "cat__Facing_East",
+      "cat__Facing_North",
+      "cat__Facing_North - East",
+      "cat__Facing_North - West",
+      "cat__Facing_South",
+      "cat__Facing_South - East",
+      "cat__Facing_South -West",
+      "cat__Facing_Unknown",
+      "cat__Facing_West",
+      "cat__Location_Mumbai",
+      "cat__Property Type_Apartment",
+      "cat__Property Type_Builder Floor Apartment",
+      "cat__Property Type_Penthouse",
+      "cat__Property Type_Residential House",
+      "cat__Property Type_Service Apartment",
+      "cat__Property Type_Villa"
+    ]
+  },
+  "metrics": {
+    "Median baseline": {
+      "MAE_INR": 67123.75384615385,
+      "RMSE_INR": 140522.95049657405,
+      "R2": -0.09548359381107963
+    },
+    "Day 2 Random Forest": {
+      "MAE_INR": 38044.92790046044,
+      "RMSE_INR": 82899.45487397742,
+      "R2": 0.6187457377846625
+    },
+    "Day 4 MLP": {
+      "MAE_INR": 38006.032683759535,
+      "RMSE_INR": 82589.87166044797,
+      "R2": 0.6215879647184236
+    }
+  },
+  "nonoverlap_metrics": {
+    "Median baseline": {
+      "MAE_INR": 73449.25513585156,
+      "RMSE_INR": 150846.791043849,
+      "R2": -0.10683268157433834
+    },
+    "Day 2 Random Forest": {
+      "MAE_INR": 42189.25700274358,
+      "RMSE_INR": 90883.39243932228,
+      "R2": 0.5982287262967576
+    },
+    "Day 4 MLP": {
+      "MAE_INR": 41614.66875148846,
+      "RMSE_INR": 89588.56276298325,
+      "R2": 0.6095953685180348
+    }
+  },
+  "reload_passed": true
+}
