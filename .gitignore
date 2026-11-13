@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+data/*
+!data/.gitkeep
+*.pt
+*.joblib
+reports/test_predictions.csv
+reports/split_manifest.csv
+runs/
+.env
+kaggle.json
+*.log
+.local_jupyter/
+.local_matplotlib/
+.local_ipython/
