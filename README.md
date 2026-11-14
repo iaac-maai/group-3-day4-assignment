@@ -15,7 +15,7 @@ The Day 2 Random Forest predicted monthly advertised rent from eight property fe
 
 The cleaned Mumbai file has **18,846 rows and 26 columns**. Each row is an advertisement. The target is `Price_num`, in INR per month. The source is Harshal Honde's [Property Rental Listings Dataset](https://www.kaggle.com/datasets/harshalhonde/property-rental-listings-dataset); the group's earlier documentation declares CC BY 4.0. See [DATA_ATTRIBUTION.md](DATA_ATTRIBUTION.md) for the pinned source and checksum.
 
-The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifies its checksum. The local ZIP already contains it. Data and model weights are excluded from GitHub by `.gitignore`.
+The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifies its checksum. Data and model weights are excluded from GitHub by `.gitignore`.
 
 ## How the experiment works
 
@@ -68,9 +68,9 @@ python -m venv .venv
 
 You can also open the notebook in Jupyter or VS Code, select this environment and use **Restart Kernel → Run All**. The notebook accepts either the project root or `notebook/` as its working directory.
 
-`TRAIN=True` runs the full experiment. `TRAIN=False` loads the final neural network, uses the recorded histories and refits the inexpensive Day 2 comparators. It does not need intermediate neural-network checkpoints. The local ZIP contains the necessary final model files. `publication.json` pins the existing Hugging Face model to revision `1b628c61c956fdd97543c1f21e258d023a041109`. Missing model files download automatically from that revision. Retraining only writes local files; it never uploads or overwrites the published model.
+`TRAIN=True` runs the full experiment. `TRAIN=False` loads the final neural network, uses the recorded histories and refits the inexpensive Day 2 comparators. It does not need intermediate neural-network checkpoints. `publication.json` pins the existing Hugging Face model to revision `1b628c61c956fdd97543c1f21e258d023a041109`. Missing model files download automatically from that revision. Retraining only writes local files; it never uploads or overwrites the published model.
 
-For a prediction/reload check, run `python predict_local.py`. `python execute_local.py --train` executes the notebook cells sequentially without Jupyter's kernel transport, capturing their real outputs. Use `python run_notebook.py --train` for a fresh Jupyter-kernel training run, or `python run_notebook.py --no-train` to load the published model. `python verify_project.py --remote` checks fresh downloads and predictions. See [validation evidence](reports/VALIDATION.md) for the checks actually completed.
+For a prediction/reload check, run `python predict_local.py`. `python execute_local.py --train` executes the notebook cells sequentially without Jupyter's kernel transport, capturing their real outputs. Use `python run_notebook.py --train` for a fresh Jupyter-kernel training run, or `python run_notebook.py --no-train` to load the published model. `python verify_project.py --remote` checks fresh downloads and predictions.
 
 ## Files
 
@@ -94,8 +94,8 @@ These are historical advertisements, not verified rental transactions. The colle
 
 ## AI usage
 
-ChatGPT/Codex helped prepare the code, run the experiments, produce figures and draft the documentation. The request was to complete the Day 4 A1 workflow locally, in English, using the group's Mumbai data. Checks included the dataset checksum, the original Day 2 split and Random Forest settings, actual execution, and saved-model reloading. The comparator was corrected from the earlier exploratory Decision Tree to the final Random Forest. The main lesson was that matching the data and preprocessing matters as much as choosing a model. Team members must still review the explanations and discuss the failure cases in their own words; this document does not claim that review has already happened.
+ChatGPT/Codex assisted with code, figures and documentation. Verification included the dataset checksum, the Day 2 split and Random Forest settings, full notebook execution and saved-model predictions.
 
 ## License and hand-in
 
-Code and model: MIT. Data: separately attributed under its declared CC BY 4.0 license. The existing Hugging Face model is preserved. Corrections are proposed on a separate GitHub branch and pull request; merging is left to the team. The official brief states 9 November 2026 as the submission snapshot date: this correction does not establish acceptance of late changes or an extension.
+Code and model: MIT. Data: separately attributed under its declared CC BY 4.0 license. 

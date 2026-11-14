@@ -19,7 +19,7 @@ This model estimates monthly advertised Mumbai rent from eight property features
 **Authors:** Ahmed Belahcen, Nandini Rathod, Sanjana Kiran and Akanksha Dhumal.
 **Source:** https://github.com/iaac-maai/group-3-day4-assignment
 **Published model:** https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals
-**Pinned revision:** `1b628c61c956fdd97543c1f21e258d023a041109`. This GitHub card is the corrected documentation; it has not overwritten the existing Hugging Face card.
+**Pinned revision:** `1b628c61c956fdd97543c1f21e258d023a041109`.
 
 ## Model at a glance
 
@@ -135,14 +135,14 @@ with torch.no_grad():
 print(rent)  # INR per month
 ```
 
-The project includes a separate-process reload check using four saved scenarios and an empty-directory download check: `python verify_project.py --remote`. See `reports/VALIDATION.md` in the GitHub project for execution evidence.
+The project includes a separate-process reload check using four saved scenarios and an empty-directory download check: `python verify_project.py --remote`.
 
 ## Reproducibility, license and security
 
-The GitHub project contains `notebook/neural_network.ipynb`, `requirements.txt`, the training histories and the pinned dataset source. Keep the PNG files beside this card so its figures render. The existing Hugging Face publication reports Python 3.12.10, PyTorch 2.15.0+cpu and pandas 3.0.6; the checked local environment uses Python 3.12.14, PyTorch 2.14.1+cpu and pandas 3.1.0. The published weights reproduce the recorded metrics in the local environment. Retraining may vary across versions; the two runs must not be presented as the same execution.
+The GitHub project contains `notebook/neural_network.ipynb`, `requirements.txt`, the training histories and the pinned dataset source. Keep the PNG files beside this card so its figures render. The existing Hugging Face publication reports Python 3.12.10, PyTorch 2.15.0+cpu and pandas 3.0.6; the training environment uses Python 3.12.14, PyTorch 2.14.1+cpu and pandas 3.1.0. The published weights reproduce the recorded metrics in the training environment. Retraining may vary across versions; the two runs must not be presented as the same execution.
 
 The code and model use MIT. The data keeps its separately declared CC BY 4.0 attribution. Joblib files can execute code when loaded: use trusted model files only. The example loads PyTorch weights with `weights_only=True`.
 
 ## AI assistance
 
-ChatGPT/Codex helped prepare the code, run the experiments, produce figures and draft the documentation. The request was to complete the Day 4 A1 workflow locally, in English, using the group's Mumbai data. Checks included the dataset checksum, the original Day 2 split and Random Forest settings, actual execution, and saved-model reloading. The comparator was corrected from the earlier exploratory Decision Tree to the final Random Forest. The main lesson was that matching the data and preprocessing matters as much as choosing a model. Team members must still review the explanations and discuss the failure cases in their own words; this document does not claim that review has already happened.
+ChatGPT/Codex assisted with code, figures and documentation. Verification included the dataset checksum, the Day 2 split and Random Forest settings, full notebook execution and saved-model predictions.

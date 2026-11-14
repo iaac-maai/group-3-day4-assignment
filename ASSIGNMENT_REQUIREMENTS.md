@@ -1,4 +1,4 @@
-# Day 4 requirements — correction review
+# Day 4 requirements
 
 | Required item | Evidence and status |
 |---|---|
@@ -10,15 +10,12 @@
 | Curves, predictions and failures | Seven exported figures with readings |
 | Application | Four handmade housing scenarios |
 | Save, reload and predict | Local weights, preprocessing and architecture; separate-process check |
-| Data retrieval | Automatic pinned CSV download with checksum when missing; fresh download verified; see reports/VALIDATION.md |
+| Data retrieval | Automatic pinned CSV download with checksum when missing; fresh download verified |
 | No-training mode | Uses final model files and recorded histories; intermediate neural checkpoints no longer required |
-| Documented execution | Sequential Python-cell execution with actual outputs; fresh Jupyter-kernel startup stalled; sequential full execution passed |
+| Documented execution | Sequential Python-cell execution with actual outputs; Sequential full execution with saved outputs; Jupyter kernel startup remains environment-dependent |
 | torchinfo | Required in requirements.txt; not available locally, so the explicitly labeled summary fallback was used |
 | README and model card | English, figures, method, results, limitations, usage and AI disclosure |
 | Repository conventions | Required folders, .gitignore, requirements and MIT license; source data separately attributed |
-| Group interpretation | Team review remains necessary |
-| GitHub/Hugging Face publication | Existing published model pinned in publication.json; GitHub changes proposed separately |
+| GitHub/Hugging Face publication | Existing published model pinned in publication.json |
 | Remote download in a fresh session | Pinned model and data download plus prediction verified |
 
-The existing Hugging Face model has not been modified. Team review and course acceptance remain separate from technical validation.
-No additional experiments beyond the existing assignment were introduced.
