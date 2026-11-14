@@ -10,9 +10,9 @@
   "batch_size": 256,
   "target_scale": 100000.0,
   "seed": 42,
-  "tuning_seconds": 3.85957640002016,
+  "tuning_seconds": 5.407482500002516,
   "selection_metric": "validation MAE",
-  "refit_seconds": 2.415860200067982,
+  "refit_seconds": 3.3255052999993495,
   "parameters": 3649,
   "features": [
     "Area_num",
