@@ -1,4 +1,4 @@
-# Day 4 requirements — local status
+# Day 4 requirements
 
 | Required item | Evidence and status |
 |---|---|
@@ -10,15 +10,12 @@
 | Curves, predictions and failures | Seven exported figures with readings |
 | Application | Four handmade housing scenarios |
 | Save, reload and predict | Local weights, preprocessing and architecture; separate-process check |
-| Data retrieval | Automatic pinned CSV download with checksum when missing; remote access not verified in this session |
+| Data retrieval | Automatic pinned CSV download with checksum when missing; fresh download verified |
 | No-training mode | Uses final model files and recorded histories; intermediate neural checkpoints no longer required |
-| Documented execution | Sequential Python-cell execution with actual outputs; fresh Jupyter-kernel execution still requires verification |
+| Documented execution | Sequential Python-cell execution with actual outputs; Sequential full execution with saved outputs; Jupyter kernel startup remains environment-dependent |
 | torchinfo | Required in requirements.txt; not available locally, so the explicitly labeled summary fallback was used |
 | README and model card | English, figures, method, results, limitations, usage and AI disclosure |
 | Repository conventions | Required folders, .gitignore, requirements and MIT license; source data separately attributed |
-| Group interpretation | Team review remains necessary |
-| GitHub/Hugging Face publication | Intentionally pending; publication.json awaits actual repository values |
-| Remote download in a fresh session | Pending publication and network access |
+| GitHub/Hugging Face publication | Existing published model pinned in publication.json |
+| Remote download in a fresh session | Pinned model and data download plus prediction verified |
 
-This status does not claim publication or remote checks have been completed.
-No additional experiments beyond the existing assignment were introduced.

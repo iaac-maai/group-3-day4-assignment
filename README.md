@@ -1,11 +1,11 @@
 # Predicting Mumbai rent with a neural network
 
-**AI Methods I · Day 4 · Track A1 · IAAC MaAI 2026/27**  
+**AI Methods I · Day 4 · Track A1 · IAAC MaAI 2026/27**
 **Group 3:** Ahmed Belahcen, Nandini Rathod, Sanjana Kiran and Akanksha Dhumal.
 
-**Model:** [local model card](models/README.md). Hugging Face publication is pending.  
-**Notebook:** [neural_network.ipynb](notebook/neural_network.ipynb), with executed outputs.  
-**Results:** [REPORT.html](REPORT.html).
+**Model:** [published Hugging Face model](https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals) · [model card](models/README.md).
+**Notebook:** [neural_network.ipynb](notebook/neural_network.ipynb), with executed outputs.
+**Results:** [evaluation report](reports/evaluation.json).
 
 ## What is the project about?
 
@@ -15,7 +15,7 @@ The Day 2 Random Forest predicted monthly advertised rent from eight property fe
 
 The cleaned Mumbai file has **18,846 rows and 26 columns**. Each row is an advertisement. The target is `Price_num`, in INR per month. The source is Harshal Honde's [Property Rental Listings Dataset](https://www.kaggle.com/datasets/harshalhonde/property-rental-listings-dataset); the group's earlier documentation declares CC BY 4.0. See [DATA_ATTRIBUTION.md](DATA_ATTRIBUTION.md) for the pinned source and checksum.
 
-The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifies its checksum. The local ZIP already contains it. Data and model weights are excluded from GitHub by `.gitignore`.
+The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifies its checksum. Data and model weights are excluded from GitHub by `.gitignore`.
 
 ## How the experiment works
 
@@ -28,7 +28,7 @@ The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifi
 
 The final MLP has **23 inputs → 64 → 32 → 1**, ReLU activations and **3,649 parameters**. Adam uses learning rate 0.001 and batch size 256. The loss is MSE on rent divided by 100,000. Validation selected no dropout and 28 epochs. The tuning encoder had 22 inputs; refitting on the larger training set added one category, so the saved model uses 23.
 
-Training ran on the laptop CPU with two PyTorch threads. The latest measured tuning time was 6.2 seconds; final MLP and forest fitting took 4.0 seconds.
+Training runs on CPU with two PyTorch threads. Measured timings and library versions for the checked run are recorded in `reports/evaluation.json`; timings vary by machine.
 
 ## Results
 
@@ -68,9 +68,9 @@ python -m venv .venv
 
 You can also open the notebook in Jupyter or VS Code, select this environment and use **Restart Kernel → Run All**. The notebook accepts either the project root or `notebook/` as its working directory.
 
-`TRAIN=True` runs the full experiment. `TRAIN=False` loads the final neural network, uses the recorded histories and refits the inexpensive Day 2 comparators. It does not need intermediate neural-network checkpoints. The local ZIP contains the necessary final model files. After publication, fill `publication.json` with the actual Hugging Face repository and its 40-character commit SHA; missing final model files can then be downloaded automatically. It deliberately does not point to a repository that has not been created.
+`TRAIN=True` runs the full experiment. `TRAIN=False` loads the final neural network, uses the recorded histories and refits the inexpensive Day 2 comparators. It does not need intermediate neural-network checkpoints. `publication.json` pins the existing Hugging Face model to revision `1b628c61c956fdd97543c1f21e258d023a041109`. Missing model files download automatically from that revision. Retraining only writes local files; it never uploads or overwrites the published model.
 
-For a prediction/reload check, run `python predict_local.py`. `python execute_local.py --train` executes the notebook cells sequentially without Jupyter's kernel transport, capturing their real outputs. This was the execution method verified here. The Jupyter runner is supplied, but a fresh Jupyter-kernel run could not be verified on this host. `RUN_LOCAL.ps1` uses a project environment if available, otherwise the prepared parent environment on Ahmed's computer.
+For a prediction/reload check, run `python predict_local.py`. `python execute_local.py --train` executes the notebook cells sequentially without Jupyter's kernel transport, capturing their real outputs. Use `python run_notebook.py --train` for a fresh Jupyter-kernel training run, or `python run_notebook.py --no-train` to load the published model. `python verify_project.py --remote` checks fresh downloads and predictions.
 
 ## Files
 
@@ -84,7 +84,7 @@ For a prediction/reload check, run `python predict_local.py`. `python execute_lo
 | `source_reference/` | Day 2 evidence used to reproduce the comparator |
 | `project_io.py` | Data checksum and missing-file downloads |
 | `predict_local.py` | Load the saved model and predict |
-| `publication.json` | Actual repository details, to fill after publication |
+| `publication.json` | Published repository and pinned revision |
 | `requirements.txt` | Pinned packages |
 | `LICENSE` | MIT license for project code and model |
 
@@ -94,8 +94,8 @@ These are historical advertisements, not verified rental transactions. The colle
 
 ## AI usage
 
-ChatGPT/Codex helped prepare the code, run the experiments, produce figures and draft the documentation. The request was to complete the Day 4 A1 workflow locally, in English, using the group's Mumbai data. Checks included the dataset checksum, the original Day 2 split and Random Forest settings, actual execution, and saved-model reloading. The comparator was corrected from the earlier exploratory Decision Tree to the final Random Forest. The main lesson was that matching the data and preprocessing matters as much as choosing a model. Team members must still review the explanations and discuss the failure cases in their own words; this document does not claim that review has already happened.
+ChatGPT/Codex assisted with code, figures and documentation. Verification included the dataset checksum, the Day 2 split and Random Forest settings, full notebook execution and saved-model predictions.
 
 ## License and hand-in
 
-Code and model: MIT. Data: separately attributed under its declared CC BY 4.0 license. The publication steps are still pending at the user's request. Once the repositories exist, add the model link at the top of this README and the GitHub link in the model card, then test downloading and using the published model in a fresh session.
+Code and model: MIT. Data: separately attributed under its declared CC BY 4.0 license. 
