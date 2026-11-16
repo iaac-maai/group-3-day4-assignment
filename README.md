@@ -1,11 +1,15 @@
 # Predicting Mumbai rent with a neural network
 
+**Published Hugging Face model:** [Mumbai Rental Price Estimator](https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals)
+
+**Model card:** [View model documentation](models/README.md)
+
+**Training notebook:** [neural_network.ipynb](notebook/neural_network.ipynb)
+
+**Evaluation results:** [evaluation.json](reports/evaluation.json)
+
 **AI Methods I · Day 4 · Track A1 · IAAC MaAI 2026/27**
 **Group 3:** Ahmed Belahcen, Nandini Rathod, Sanjana Kiran and Akanksha Dhumal.
-
-**Model:** [published Hugging Face model](https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals) · [model card](models/README.md).
-**Notebook:** [neural_network.ipynb](notebook/neural_network.ipynb), with executed outputs.
-**Results:** [evaluation report](reports/evaluation.json).
 
 ## What is the project about?
 
