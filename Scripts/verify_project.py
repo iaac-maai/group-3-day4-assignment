@@ -6,8 +6,8 @@ import pandas as pd
 import torch
 from torch import nn
 import joblib
-from predict_local import predict
-from project_io import ensure_model, ensure_data
+from Scripts.predict_local import predict
+from Scripts.project_io import ensure_model, ensure_data
 
 root=Path(__file__).resolve().parent
 config=json.loads((root/'models/config.json').read_text())

@@ -10,7 +10,7 @@ from torch import nn
 ROOT = Path(__file__).resolve().parent
 
 def load_model():
-    from project_io import ensure_model
+    from Scripts.project_io import ensure_model
     ensure_model(ROOT)
     config = json.loads((ROOT/'models/config.json').read_text())
     model = nn.Sequential(
