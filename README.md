@@ -153,8 +153,31 @@ For a prediction/reload check, run `python predict_local.py`. `python execute_lo
 These are historical advertisements, not verified rental transactions. The collection date is unknown, `Location` does not include neighborhoods, some area units may be inconsistent, and many balcony values are missing. There are 752 test rows with an exact feature-and-target match in training. We report this because the random split can make generalization look better than it is. Excluding those exact matches gives an MLP MAE of about 41,619 INR/month, but that check cannot identify every repeated dwelling. The model is not validated for current valuations, other cities, eligibility decisions or financial commitments.
 
 ## AI usage
+### Tools
+ChatGPT and Codex were used as AI-assisted tools during the development of this assignment.
 
-ChatGPT/Codex assisted with code, figures and documentation. Verification included the dataset checksum, the Day 2 split and Random Forest settings, full notebook execution and saved-model predictions.
+### Why
+We used AI tools to support the implementation, debugging, visualization and documentation of our neural network experiment. These tools helped us organize the workflow, understand implementation details and communicate the results more clearly.
+
+### Where
+AI assistance was used in the following areas:
+- **Code development:** Supporting the implementation and debugging of the PyTorch neural network and associated Python scripts.
+- **Data processing:** Assisting with the structure of preprocessing and evaluation workflows.
+- **Visualizations:** Supporting the generation and presentation of training curves, model comparisons and prediction-error figures.
+- **Documentation:** Helping organize the README, explain the methodology and present the evaluation results.
+
+### How
+The repository documents several verification procedures used to check the project:
+- Checking the dataset checksum to ensure the correct data version was used.
+- Preserving the Day 2 train/test split and Random Forest configuration for a fair comparison.
+- Executing the notebook to verify that the workflow runs.
+- Testing predictions using the saved model and preprocessing artifacts.
+- Comparing the MLP against the Random Forest and median baselines using the same test set.
+
+AI-assisted explanations and code should be checked against the actual notebook outputs, evaluation metrics and saved model artifacts. Any incorrect descriptions or unsupported claims must be corrected before final submission.
+
+### Lessons learned
+This assignment demonstrated that AI tools can help accelerate coding, debugging and technical documentation, but their outputs require careful verification. We learned the importance of checking model architecture, preprocessing, evaluation metrics and experimental results against the actual implementation rather than relying only on AI-generated explanations. The comparison between the MLP and Random Forest also reinforced the importance of interpreting results critically. Although the neural network achieved a slightly lower MAE, the difference was small and did not justify claiming a substantial improvement. Overall, AI tools were used as development aids, while reproducibility, verification and interpretation remained essential parts of the project.
 
 ## License and hand-in
 
