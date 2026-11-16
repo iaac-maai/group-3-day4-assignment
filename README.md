@@ -13,7 +13,23 @@
 
 ## What is the project about?
 
-The Day 2 Random Forest predicted monthly advertised rent from eight property features. This project tests a small neural network on the same task and the same test rows. A housing researcher could use the estimates to compare early budget scenarios. An underestimate could lead to an unrealistic budget; an overestimate could rule out an affordable option. The model is a coursework experiment, not a current market valuation tool.
+The project investigates whether a small neural network can predict monthly residential rental prices in Mumbai, India, using property listing characteristics. It builds on the Day 2 assignment, which used a Random Forest regression model, and compares both approaches on the same test data.
+
+### Use case and intended users
+
+The model is intended for educational research and exploratory housing market analysis. A housing researcher or analyst could use it to compare rental price estimates across different property characteristics and investigate how machine learning models respond to changes in listing attributes.
+
+For example, the model could help explore rental budget scenarios by estimating the monthly advertised rent of a property based on its features.
+
+### Cost of prediction errors
+
+Prediction errors can have practical consequences:
+
+- **Underestimating rent:** May lead to unrealistic housing budgets or incorrect expectations about affordability.
+- **Overestimating rent:** May cause someone to reject a potentially affordable property.
+- **Large prediction errors:** May be especially misleading for unusual or expensive properties.
+
+The model is a coursework experiment rather than a professional property valuation system. Its predictions should not be used as the sole basis for financial commitments or rental decisions.
 
 ## Data
 
@@ -23,16 +39,56 @@ The notebook downloads the exact cleaned Day 2 CSV if it is missing, then verifi
 
 ## How the experiment works
 
-1. Keep the Day 2 test split: 15,076 training rows and 3,770 test rows, seed 42.
-2. Use 12,060 fitting rows and 3,016 validation rows for model selection.
-3. Impute and standardize numeric inputs; impute and one-hot encode categories. Fit preprocessing on the fitting set only during tuning.
-4. Compare dropout 0 and 0.2 with the same architecture, optimizer, learning rate and batch size.
-5. Choose the lowest validation MAE, then train a fresh model on all outer-training rows for the selected number of epochs.
-6. Compare the frozen model with the original Random Forest and a median baseline on the same test set.
+The project compares a PyTorch multilayer perceptron (MLP) with the Random Forest model developed during Day 2 and a simple median-rent baseline.
 
-The final MLP has **23 inputs → 64 → 32 → 1**, ReLU activations and **3,649 parameters**. Adam uses learning rate 0.001 and batch size 256. The loss is MSE on rent divided by 100,000. Validation selected no dropout and 28 epochs. The tuning encoder had 22 inputs; refitting on the larger training set added one category, so the saved model uses 23.
+### Dataset and preprocessing
 
-Training runs on CPU with two PyTorch threads. Measured timings and library versions for the checked run are recorded in `reports/evaluation.json`; timings vary by machine.
+The experiment uses 18,846 cleaned Mumbai rental advertisements. The target variable is `Price_num`, representing advertised monthly rent in Indian Rupees (INR).
+The original Day 2 train/test split is preserved for a fair comparison:
+- **Training set:** 15,076 listings
+- **Test set:** 3,770 listings
+- **Random seed:** 42
+The training set is further divided into 12,060 fitting samples and 3,016 validation samples for model selection.
+Numeric features are imputed and standardized, while categorical features are imputed and one-hot encoded. During tuning, preprocessing is fitted only on the fitting subset to prevent information leakage.
+
+### Neural network architecture
+The final model is a fully connected neural network implemented in PyTorch.
+
+**Architecture:** 23 input features → 64 hidden neurons → 32 hidden neurons → 1 output.
+- **Activation:** ReLU
+- **Trainable parameters:** 3,649
+- **Optimizer:** Adam
+- **Learning rate:** 0.001
+- **Batch size:** 256
+- **Loss function:** Mean Squared Error (MSE), with rent divided by 100,000 during training
+- **Final dropout:** 0
+- **Selected training epochs:** 28
+- **Hardware:** CPU, using two PyTorch threads
+
+The final output represents the estimated monthly rental price after reversing the target scaling.
+
+### Experiments and model selection
+Two dropout configurations were compared:
+1. **Dropout 0:** No dropout regularization.
+2. **Dropout 0.2:** Dropout regularization to reduce potential overfitting.
+
+Both configurations used the same architecture, optimizer, learning rate and batch size.
+Model selection was based on the lowest validation Mean Absolute Error (MAE). The experiment selected the configuration without dropout and 28 training epochs.
+A fresh model was then trained on all 15,076 outer-training listings using the selected configuration.
+During tuning, the preprocessor produced 22 encoded inputs. Refitting on the larger training set introduced one additional category, resulting in 23 inputs for the final saved model.
+
+### Baseline comparison
+The final neural network was evaluated against two baselines using the same held-out test set:
+
+| Model | MAE (INR/month) | RMSE (INR/month) | R² |
+|---|---:|---:|---:|
+| Median baseline | 67,123.75 | 140,522.95 | -0.0955 |
+| Day 2 Random Forest | 38,044.93 | 82,899.45 | 0.6187 |
+| Day 4 MLP | 38,008.45 | 82,594.83 | 0.6215 |
+
+The MLP reduced MAE by approximately 43.4% compared with the median baseline. However, its improvement over the Random Forest was only approximately 36 INR/month, or 0.1%.
+These results suggest that the MLP and Random Forest achieve very similar predictive performance on this dataset. The small difference does not establish a meaningful advantage for the more complex neural network.
+Training timings and library versions are recorded in `reports/evaluation.json`.
 
 ## Results
 
