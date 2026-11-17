@@ -1,7 +1,6 @@
 # Predicting Mumbai rent with a neural network
 
-**Published Hugging Face model:** [Mumbai Rental Price Estimator](https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals)
-
+**Published Hugging Face model:** [Mumbai Rental Price Estimator](https://huggingface.co/iaac-maai/day4-group3-mumbai-rent-mlp)
 **Model card:** [View model documentation](models/README.md)
 
 **Training notebook:** [neural_network.ipynb](notebook/neural_network.ipynb)

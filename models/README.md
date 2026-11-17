@@ -18,7 +18,7 @@ This model estimates monthly advertised Mumbai rent from eight property features
 
 **Authors:** Ahmed Belahcen, Nandini Rathod, Sanjana Kiran and Akanksha Dhumal.
 **Source:** https://github.com/iaac-maai/group-3-day4-assignment
-**Published model:** https://huggingface.co/iaac-maai/day4-group3-ai_methods_MumbaiRentals
+**Published model:** https://huggingface.co/iaac-maai/day4-group3-mumbai-rent-mlp
 **Pinned revision:** `1b628c61c956fdd97543c1f21e258d023a041109`.
 
 ## Model at a glance
@@ -99,9 +99,35 @@ The MLP has MAE about 38,008 INR/month and R² about 0.622. It beats the median 
 
 The largest miss is a one-bedroom listing with reported area 655 ft² and rent INR 2,500,000/month. The model estimates about INR 21,867. Another listing reports 10,000 ft² and rent INR 200,000; the estimate is about INR 1,081,762. These combinations need source checking. Neither error is a reason to remove a test row after seeing the result.
 
-## Limitations
+## Limitations and biases
 
-These are historical advertisements, not verified rental transactions. The collection date is unknown, `Location` does not include neighborhoods, some area units may be inconsistent, and many balcony values are missing. There are 752 test rows with an exact feature-and-target match in training. We report this because the random split can make generalization look better than it is. Excluding those exact matches gives an MLP MAE of about 41,619 INR/month, but that check cannot identify every repeated dwelling. The model is not validated for current valuations, other cities, eligibility decisions or financial commitments.
+This model was trained on historical Mumbai rental property advertisements and has several important limitations.
+
+### Dataset limitations
+- **Historical data:** The collection dates of the rental advertisements are unknown. The model may not reflect current rental prices.
+- **Advertised prices:** The dataset contains advertised rents rather than verified rental transactions.
+- **Geographical limitations:** The model is trained on Mumbai listings and has not been validated for other cities.
+- **Duplicate listings:** Multiple advertisements may represent the same property, potentially introducing bias into model evaluation.
+- **Missing information:** Important factors such as exact neighborhood, building condition, amenities, and accessibility may not be adequately represented.
+
+### Model limitations
+- The model may produce inaccurate predictions for unusually large, expensive, or uncommon properties.
+- Predictions are based on statistical relationships in the training data and should not be interpreted as causal relationships.
+- Performance on historical test data does not guarantee accuracy on new or current listings.
+- Similar or duplicate listings across training and test sets may make evaluation results appear more favorable than performance on genuinely unseen properties.
+
+### Known failure cases
+The model produces large prediction errors for some unusual combinations of property size and advertised rent. For example, extremely expensive small properties and unusually large properties may be poorly estimated.
+
+### Where the model must not be used
+This model is intended for educational and experimental purposes only. It should not be used for:
+- Official property valuations.
+- Financial commitments or investment decisions.
+- Tenant selection or housing-access decisions.
+- Legal or regulatory assessments.
+- Automated decisions that materially affect individuals.
+
+Predictions should be interpreted as experimental estimates of historical advertised rents, not reliable current market valuations.
 
 ## How to use
 
@@ -115,7 +141,7 @@ from urllib.request import urlretrieve
 
 folder = Path("models")
 folder.mkdir(exist_ok=True)
-repo = "iaac-maai/day4-group3-ai_methods_MumbaiRentals"
+repo = "iaac-maai/day4-group3-mumbai-rent-mlp"
 revision = "1b628c61c956fdd97543c1f21e258d023a041109"
 for name in ("model.pt", "scaler.joblib", "config.json"):
     if not (folder / name).exists():
